@@ -6,50 +6,36 @@
 //
 
 import UIKit
-
+import CoreData
 class SportCell_TV: UITableViewCell {
-
+    
     @IBOutlet weak var addImage_Btn: UIButton!
     @IBOutlet weak var sportName_Label: UILabel!
-    
     @IBOutlet weak var sportImage_Image: UIImageView!
+    
+    var delegate:ImageDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
-    @IBAction func addImage_Action(_ sender: UIButton) {
-        addImage_Btn.isHidden = true
-        sportImage_Image.isHidden = false
-//        guard let data = image_UI else {return}
-//        
-//        var img = UIImage(data: data)
-//        image_UI.setImage(UIImage(data: data) , for: .normal)
-//        
-//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//            let imagePickerController = UIImagePickerController()
-//            imagePickerController.sourceType = .photoLibrary
-//            imagePickerController.delegate = self
-//            self.present(imagePickerController, animated: true, completion: nil)
-//        }
-//        
-        
-//        image_UI.setImage(UIImage(systemName: "person"), for: .normal)
-//        image_UI.titleLabel?.isHidden = true
-    }
-}
-extension SportCell_TV: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func sendData(image_Data : Data?){
+        if let image_Data = image_Data {
+            sportImage_Image.image = UIImage(data: image_Data)
+            
+        }
+    }
+    @IBAction func addImage_Action(_ sender: UIButton) {
+        delegate?.addImage(sportCell_control: self)
         
-//        let image = info[.originalImage] as? UIImage
-//        image_UI.setImage(image, for: .normal)
-//        picker.dismiss(animated: true, completion: nil)
     }
 }
+
+

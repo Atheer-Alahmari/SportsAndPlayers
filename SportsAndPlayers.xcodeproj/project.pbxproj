@@ -20,6 +20,7 @@
 		97A03981277CD04A00A05E31 /* Sports+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0397D277CD04A00A05E31 /* Sports+CoreDataProperties.swift */; };
 		97A03982277CD04A00A05E31 /* Players+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0397E277CD04A00A05E31 /* Players+CoreDataClass.swift */; };
 		97A03983277CD04A00A05E31 /* Players+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0397F277CD04A00A05E31 /* Players+CoreDataProperties.swift */; };
+		97A03985277D190B00A05E31 /* ImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A03984277D190B00A05E31 /* ImageDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		97A0397D277CD04A00A05E31 /* Sports+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sports+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97A0397E277CD04A00A05E31 /* Players+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Players+CoreDataClass.swift"; sourceTree = "<group>"; };
 		97A0397F277CD04A00A05E31 /* Players+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Players+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		97A03984277D190B00A05E31 /* ImageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				97A03960277C6B1100A05E31 /* AppDelegate.swift */,
 				97A03962277C6B1100A05E31 /* SceneDelegate.swift */,
+				97A03984277D190B00A05E31 /* ImageDelegate.swift */,
 				97A03977277C759F00A05E31 /* Controllers */,
 				97A03966277C6B1100A05E31 /* Main.storyboard */,
 				97A0396C277C6B1300A05E31 /* Assets.xcassets */,
@@ -173,6 +176,7 @@
 				97A03965277C6B1100A05E31 /* Sport_TVC.swift in Sources */,
 				97A03961277C6B1100A05E31 /* AppDelegate.swift in Sources */,
 				97A03979277C7A7600A05E31 /* SportCell_TV.swift in Sources */,
+				97A03985277D190B00A05E31 /* ImageDelegate.swift in Sources */,
 				97A03963277C6B1100A05E31 /* SceneDelegate.swift in Sources */,
 				97A03980277CD04A00A05E31 /* Sports+CoreDataClass.swift in Sources */,
 				97A03982277CD04A00A05E31 /* Players+CoreDataClass.swift in Sources */,

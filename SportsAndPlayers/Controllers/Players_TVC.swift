@@ -8,11 +8,11 @@
 import UIKit
 import CoreData
 class Players_TVC: UITableViewController {
-
+    
     var sportName : String?
     var sportObj:Sports?
     var listPlayerInfo :[Players] = []
-var name = ""
+    var name = ""
     var age = ""
     var hight = ""
     
@@ -20,6 +20,8 @@ var name = ""
         super.viewDidLoad()
         self.title = sportObj?.sportName
         
+        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add , target: self, action: #selector(addPlayer))
+        //        
         fetchData()
     }
     // MARK: -----------------------------------------------------------------
@@ -51,15 +53,15 @@ var name = ""
         }
         alertVC.addTextField { (textAge) in
             textAge.placeholder = "Enter Age"
-
+            
         }
         alertVC.addTextField { (textHeight) in
             textHeight.placeholder = "Enter Height"
-
+            
         }
         alertVC.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         alertVC.addAction(UIAlertAction.init(title: "Save", style: .default, handler:{ [self, weak alertVC] (_) in
-          
+            
             let name_TF = alertVC?.textFields![0] // Force unwrapping because we know it exists.
             let age_TF = alertVC?.textFields![1] // Force unwrapping because we know it exists.
             let height_TF = alertVC?.textFields![2] // Force unwrapping because we know it exists.
@@ -70,8 +72,7 @@ var name = ""
             player.playerName = name_TF!.text!
             player.playerAge = age_TF!.text!
             player.playerHieght = height_TF!.text!
-            //listPlayerInfo.append(player)
-          
+            
             sportObj?.addToPlayer(player)
             do {
                 try context.save()
@@ -82,14 +83,6 @@ var name = ""
             
             
             
-            
-//            self.name = name_TF!.text!
-//            self.age = age_TF!.text!
-//            self.hight = height_TF!.text!
-//            var playerInfo = "\(self.name) - Age: \(self.age), Height: \(self.hight)"
-//            self.listPlayerInfo.append(playerInfo)
-//            self.tableView.reloadData()
-
         }))
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -97,20 +90,17 @@ var name = ""
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let playerArr = sportObj?.player {
-                   return playerArr.count
-               }
-               return 0
+            return playerArr.count
+        }
+        return 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ID_PlayerCell", for: indexPath)
         
         if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                 let playerObj = playerArr[indexPath.row]
+            let playerObj = playerArr[indexPath.row]
             cell.textLabel?.text = "\(playerObj.playerName!) - Age: \(playerObj.playerAge!), Height: \(playerObj.playerHieght!)"
-             }
-        
-//        let player = listPlayerInfo[indexPath.row]
-//        cell.textLabel?.text = "\(playerObj.playerName) - Age: \(player.playerAge!), Height: \(player.playerHieght!)"
+        }
         
         return cell
     }
@@ -118,37 +108,37 @@ var name = ""
         let alertVC = UIAlertController.init(title: "Edit Sport", message: "Edit Sport", preferredStyle: .alert)
         alertVC.addTextField { [self] (textName) in
             if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                     let playerObj = playerArr[indexPath.row]
-            
-            textName.text = playerObj.playerName
+                let playerObj = playerArr[indexPath.row]
+                
+                textName.text = playerObj.playerName
                 
             }
         }
         alertVC.addTextField { [self] (textName) in
             if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                     let playerObj = playerArr[indexPath.row]
+                let playerObj = playerArr[indexPath.row]
                 
-            textName.text = playerObj.playerAge
+                textName.text = playerObj.playerAge
             }
         }
         alertVC.addTextField { [self] (textName) in
             if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                     let playerObj = playerArr[indexPath.row]
+                let playerObj = playerArr[indexPath.row]
                 
-            textName.text = playerObj.playerHieght
+                textName.text = playerObj.playerHieght
             }
         }
         alertVC.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         alertVC.addAction(UIAlertAction.init(title: "Save", style: .default, handler:{ [self, weak alertVC] (_) in
-          
-          //  let textField = alertVC?.textFields![0] // Force unwrapping because we know it exists.
+            
+            
             
             let textname = alertVC?.textFields![0] // Force unwrapping because we know it exists.
             let textage = alertVC?.textFields![1]
             let texthight = alertVC?.textFields![2]
             
             if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                     let playerObj = playerArr[indexPath.row]
+                let playerObj = playerArr[indexPath.row]
                 playerObj.playerName = textname!.text!
                 playerObj.playerAge = textage!.text!
                 playerObj.playerHieght = texthight!.text!
@@ -164,16 +154,6 @@ var name = ""
             
             
             
-            
-            
-//            let textname = alertVC?.textFields![0] // Force unwrapping because we know it exists.
-//            let textage = alertVC?.textFields![1]
-//            let texthight = alertVC?.textFields![2]
-//            let playerInfo = "\(textname!.text!) - Age: \(textage!.text!), Height: \(texthight!.text!)"
-//            self.listPlayerInfo.append(playerInfo)
-//            self.tableView.reloadData()
-
-            
         }))
         self.present(alertVC, animated: true, completion: nil)
         
@@ -181,9 +161,9 @@ var name = ""
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let context = getContext()
         if let playerArr = sportObj?.player?.allObjects as? [Players] {
-                 let playerObj = playerArr[indexPath.row]
+            let playerObj = playerArr[indexPath.row]
             
-        context.delete(playerObj)
+            context.delete(playerObj)
         }
         do {
             try context.save()
@@ -192,5 +172,5 @@ var name = ""
             print(error.localizedDescription)
         }
     }
-
+    
 }

@@ -7,15 +7,18 @@
 
 import UIKit
 import CoreData
-class Sport_TVC: UITableViewController {
+class Sport_TVC: UITableViewController,ImageDelegate  {
+    
     var listSportName:[Sports] = []
+    var image_Cell:SportCell_TV?
+    var sport_Select : Sports?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.rowHeight = 100
-        
-        //navigationController?.navigationItem.title = "yy"
         fetchData()
+        
     }
     
     // MARK: -----------------------------------------------------------------
@@ -71,6 +74,7 @@ class Sport_TVC: UITableViewController {
         
     }
     
+    
     //MARK: ---------------------------------------tableView------------------------------------------
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,14 +86,9 @@ class Sport_TVC: UITableViewController {
         let sport = listSportName[indexPath.row]
         cell.sportName_Label.text = sport.sportName
         
-        //
-        //        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-        //            let imagePickerController = UIImagePickerController()
-        //            imagePickerController.sourceType = .photoLibrary
-        //            imagePickerController.delegate = self
-        //            self.present(imagePickerController, animated: true, completion: nil)
-        //        }
-        //
+        cell.sendData(image_Data: sport.sportImage)
+        cell.delegate = self
+        
         
         return cell
     }
@@ -140,13 +139,38 @@ class Sport_TVC: UITableViewController {
         
     }
     
+    func addImage(sportCell_control: SportCell_TV) {
+        let sport_indexPath = tableView.indexPath(for: sportCell_control)?.row ?? 0
+        sport_Select = listSportName[sport_indexPath]
+        importPicture()
+        
+        
+    }
+    func importPicture(){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
 }
-//extension Sport_TVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//
-//        let image = info[.originalImage] as? UIImage
-//        image_UI.setImage(image, for: .normal)
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-//}
+extension Sport_TVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        if  (image != nil) {
+            sport_Select?.sportImage = image!.pngData()
+            
+            let context = getContext()
+            do {
+                try context.save()
+                fetchData()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        image_Cell?.addImage_Btn.setTitle("Change Photo", for: .normal)
+        picker.dismiss(animated: true, completion: nil)
+    }
+}

@@ -30,7 +30,7 @@
                                                 <attributedString key="attributedTitle">
                                                     <fragment content="add image">
                                                         <attributes>
-                                                            <font key="NSFont" size="12" name="Helvetica"/>
+                                                            <font key="NSFont" metaFont="smallSystem"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -46,8 +46,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="21w-xG-Btp">
-                                            <rect key="frame" x="0.0" y="0.5" width="115" height="99"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="21w-xG-Btp">
+                                            <rect key="frame" x="0.0" y="0.0" width="115" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="115" id="rgb-u8-Z1L"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -57,7 +60,6 @@
                                         <constraint firstItem="21w-xG-Btp" firstAttribute="top" secondItem="ARH-C1-yMS" secondAttribute="top" id="AnO-RW-N0W"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="1gU-hN-xnJ" secondAttribute="bottom" id="IsZ-gl-KLU"/>
                                         <constraint firstAttribute="bottom" secondItem="g2T-jD-pxf" secondAttribute="bottom" id="O2p-iD-Tsl"/>
-                                        <constraint firstItem="21w-xG-Btp" firstAttribute="width" secondItem="1gU-hN-xnJ" secondAttribute="width" multiplier="2.77108" id="Py2-cb-hQ9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="1gU-hN-xnJ" secondAttribute="trailing" id="ZLt-ga-wfn"/>
                                         <constraint firstItem="g2T-jD-pxf" firstAttribute="width" secondItem="1gU-hN-xnJ" secondAttribute="width" multiplier="1.95181" id="p4A-8h-Os5"/>
                                         <constraint firstItem="21w-xG-Btp" firstAttribute="leading" secondItem="ARH-C1-yMS" secondAttribute="leading" id="uxD-ky-nZu"/>
@@ -144,6 +146,7 @@
         <!--Navigation Controller-->
         <scene sceneID="FmF-2G-iaM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAw-kb-Yk9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rny-Fk-7fe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y8t-pm-c8x">
@@ -155,13 +158,11 @@
                         <segue destination="qzy-NE-Uth" kind="relationship" relationship="rootViewController" id="0Um-5M-TVz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uAw-kb-Yk9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1478" y="106"/>
         </scene>
     </scenes>
     <resources>
-        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
